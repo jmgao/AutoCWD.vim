@@ -36,7 +36,7 @@ augroup AutoCWDAutoCmds
 augroup END
 
 " initialize python 
-python << EOF
+pythonx << EOF
 import vim
 import os, fnmatch
 
@@ -105,7 +105,7 @@ function! s:OnLeaveBuf()
 endfunction
 
 function! s:ExistPattern(bufname, buftype)
-python << EOF
+pythonx << EOF
 bufname = vim.eval('a:bufname')
 buftype = vim.eval('a:buftype')
 filepath = getWinName(bufname, buftype)
@@ -116,7 +116,7 @@ for pattern, wd in patternwd_pairs:
 		if '*REPO*' in wd:
 			wd = wd.replace('*REPO*', findRepoDirFrom(filepath))
 		wd = vim.eval('expand(\'%s\')'%wd)
-	   	if os.path.isdir(wd):
+		if os.path.isdir(wd):
 			inpatternwd = True
 			vim.command('return [1, \'%s\']'%wd)
 			break

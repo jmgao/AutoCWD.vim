@@ -11,7 +11,7 @@ endfunction
 " script variables
 
 " initialize python 
-python << EOF
+pythonx << EOF
 import vim
 import fnmatch
 
@@ -41,7 +41,7 @@ EOF
 
 " functions
 function! s:GetWorkDir(filepath)
-python << EOF
+pythonx << EOF
 filepath = vim.eval('a:filepath')
 patternwd_pairs = vim.eval('g:autocwd_patternwd_pairs')
 inpatternwd = False
@@ -60,7 +60,7 @@ EOF
 endfunction
 
 function! s:GetWorkDirPattern(filepath)
-python << EOF
+pythonx << EOF
 import fnmatch
 filepath = vim.eval('a:filepath')
 patternwd_pairs = vim.eval('g:autocwd_patternwd_pairs')
@@ -80,7 +80,7 @@ EOF
 endfunction
 
 function! s:BuildAllWinPropMat(propTypes)
-python << EOF
+pythonx << EOF
 vim.command('let mat = []')
 curwin = vim.current.window
 curwin_r = 0
@@ -126,7 +126,7 @@ endfunction
 
 function! s:PrintWorkDirs()
 	let a:type = 'workdir'
-python << EOF
+pythonx << EOF
 vim.command('let propTypes = ["iscurwin", "winnr", "winname", "workdir_pattern", "workdir"]')
 wpMat = vim.eval('s:BuildAllWinPropMat(propTypes)')
 propTypes = vim.eval('propTypes')
